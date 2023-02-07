@@ -2,7 +2,7 @@ La SpinozaBase (anciennement Projet Ethica) est un logiciel libre et
 gratuit destiné à l'étude de l'Éthique de Spinoza.
 
 
-L'Éthique en latin et hypertexte
+# L'Éthique en latin et hypertexte
 
 La SpinozaBase contient d'abord le texte latin de l'Éthique, dans une
 édition qui présente deux spécificités :
@@ -21,7 +21,7 @@ explicitement à la proposition 7, et se trouve lui-même explicitement
 cité dans le scolie de proposition 15.
 
 
-Statistiques
+# Statistiques
 
 La SpinozaBase permet de mener des recherches statistiques sur le texte
 de l'Éthique, telles que :
@@ -43,6 +43,9 @@ Quelques statistiques typiques vous sont proposées sur la page des
 statistiques simples. Il est également possible, moyennant
 l'apprentissage du langage informatique SQL, de construire des
 statistiques avancées, variables à l'infini.
+
+
+# Auteur
 
 Ce site est réalisé par Baptiste Mélès. L'édition latine du texte a été
 adaptée de celle de Gilles Louise, avec sa très aimable autorisation
