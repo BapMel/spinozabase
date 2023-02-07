@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <title>Baptiste Mélès - Projet Ethica</title>
+    <meta name="author" content="Baptiste Mélès" />
+    <meta name="keywords" lang="fr" content="" xml:lang="fr" />
+    <meta name="description" content="Site personnel de Baptiste Mélès" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="fr" />
+    <link rel="stylesheet" href="ethica.css" type="text/css" media="screen" title="Simple" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://baptiste.meles.free.fr/meles.rss" />
+  </head>
+  <body>
+    <div id="tout">
+      <div id="nav">
+        <a href="http://baptiste.meles.free.fr/">Baptiste Mélès</a>
+        <ul>
+
+    <li> <a href="../../../cv/">CV</a></li>
+
+    <li> <a href="../../../philosophie/">Philosophie</a>
+
+      <ul>
+        <li><a href="../../enseignement/">Enseignement</a></li>
+        <li><a href="../../master2">Foucault</a></li>
+        <li><a href="../../maitrise/">Hegel</a></li>
+        <li><a href="../../logique/">Logique</a></li>
+        <li><a href="../">Spinoza</a>
+
+          <ul>
+            <li><a href="./">Projet <em>Ethica</em></a></li>
+          </ul>
+
+        </li>
+        
+      </ul>
+
+    </li>
+
+    <li> <a href="../../../informatique/">Informatique</a> </li>
+
+    <li> <a href="../../../litterature/">Littérature</a> </li>
+
+  </ul>
+      </div>
+      <div id="corps">
+        <h1>Initiation au SQL du Projet Ethica</h1>
+        <div class="toc">
+    <ul>
+      <li> <a href="index.html">Page d'accueil</a></li>
+      <li> <a href="ethicadb.html">Spinoza hypertexte</a> : édition
+          latine hypertexte de l'<em>Éthique</em> </li>
+      <li> <a href="sql.php">Statistiques</a></li>
+      <li> <a href="technologie.html">Manuel technique</a> de ce projet
+        et <a href="initiation-sql.html">initiation au SQL</a></li>
+    </ul>
+</div>
+        <h2>Qu'est-ce que SQL et pourquoi l'utiliser ?</h2>
+        <p>
+  Quelle est l'axiome le plus souvent cité dans l'<em>Éthique</em> de
+  Spinoza ? Y a-t-il des définitions qui ne soient jamais citées ? Que
+  permet de démontrer telle ou telle proposition ? Dans quelle mesure la
+  cinquième partie utilise-t-elle les résultats de la première ? Combien
+  y a-t-il en tout de propositions dans l'ouvrage ? Quelles sont, dans
+  l'ordre, les dix propositions « cardinales » du livre, c'est-à-dire
+  les plus souvent citées ?
+</p>
+        <p>
+Autant de questions que l'on ne peut manquer de se poser,
+occasionnellement, en étudiant l'<em>Éthique</em>. Questions frustrantes
+en ceci que simples à décider, leurs réponses sont fastidieuses à
+élaborer : la procédure en est mécanique et répétitive. Aussi peut-on
+espérer gagner du temps en les déléguant à des ordinateurs : c'est
+l'objectif de notre projet.
+</p>
+        <p>
+Nous vous proposons d'abord un nombre fini, et relativement petit, de
+statistiques typiques. Par exemple, si vous voulez savoir quelles sont
+les définitions, axiomes etc. auxquels renvoie la proposition 26 de la
+première partie — ce que nous appelons son <strong>ascendance</strong> —
+il vous suffit de remplir le formulaire adéquat. De même si vous
+souhaitez connaître l'ensemble des propositions qui s'appuieront sur la
+proposition 26 dans la suite de l'ouvrage — sa
+« <strong>descendance</strong> ». Ces questions, fréquentes dans les
+études spinozistes, recevront facilement une réponse grâce à l'interface
+que nous vous proposons.
+</p>
+        <p>
+Mais parfois, vous aimeriez élaborer des statistiques plus fines, plus
+personnelles, partant moins prévisibles. Notre projet vous autorise à
+concevoir vous-mêmes les requêtes qui vous intéressent, et ce au moyen
+d'un langage informatique appelé SQL. En parcourant les pages du Projet
+Ethica, vous avez peut-être douloureusement fait connaissance avec
+lui. Langage barbare s'il en est, dans lequel pour connaître le nombre
+de propositions contenues dans chacune des parties de l'<em>Éthique</em>
+— question intuitivement triviale — il faut taper l'indigeste commande
+suivante :
+</p>
+        <pre>
+          <code>SELECT p1.clavis, count(p2.clavis) <br />FROM entitas p1, entitas p2, inest <br />WHERE p1.typus='pars' AND p2.typus='propositio' AND circa=p1.clavis AND intra=p2.clavis <br />GROUP BY p1.clavis <br />ORDER BY p1.id ASC;</code>
+        </pre>
+        <p> Mais comme il arrive souvent avec des langages formels, la
+  complexité et la contre-intuitivité sont le prix de la rigueur. SQL
+  est un langage informatique extrêmement puissant et précis dont la
+  fonction est de manipuler des bases de données ; c'est la raison pour
+  laquelle il a été choisi pour le Projet Ethica.
+</p>
+        <p>
+Toutes les personnes potentiellement intéressées par le Projet Ethica ne
+connaissent pas le langage SQL ; aussi nous efforcerons-nous dans ce
+document de présenter quelques notions de ce langage, appliquées à la
+base de données qui nous intéresse. Ceci n'est donc pas une présentation
+générale du langage SQL, auquel vous trouverez, en ligne ou en livre,
+des initiations plus générales, souvent très bien conçues ; vous pourrez
+vous y référer si vous voulez accéder à des fonctions plus avancées du
+langage, ou avoir une utilisation plus fine et plus libre de la base de
+données. 
+</p>
+        <p>
+Précision importante, le logiciel que nous utilisons pour gérer le SQL
+s'appelle SQLite ; toutes les fonctions proposées par d'autres systèmes,
+comme MySQL ou PostgreSQL, ne sont pas disponibles sous SQLite, mais il
+existe généralement de rigoureux équivalents. La différence n'est pour
+ainsi dire que de dialecte, non de langue.
+</p>
+        <h2>Les tables</h2>
+        <p>
+  La base de données est composée de plusieurs <strong>tables</strong>,
+  une table étant la mise en relation de plusieurs champs.  L'une de ces
+  tables, nommée <strong><code>entitas</code></strong>, contient la
+  liste de toutes les entités argumentatives qui composent
+  l'<em>Éthique</em> : définitions, axiomes, propositions, lemmes,
+  scolies, appendices, préfaces, chapitres, etc. Une deuxième
+  table, <strong><code>patetex</code></strong> (du latin <em>patet
+  ex</em>, « c'est évident à partir de » ; voir la démonstration de la
+  proposition 1 de la première partie), contient tous les renvois entre
+  entités argumentatives qui constituent la base même de la méthode
+  géométrique de Spinoza.  Enfin, une dernière
+  table, <strong><code>inest</code></strong>, contient toutes les
+  relations d'inclusion entre entités argumentatives ; par exemple, la
+  démonstration de la proposition 1 est comprise dans la proposition 1,
+  qui est elle-même située dans la première partie de l'ouvrage.
+</p>
+        <p>
+Sachant ceci, vous êtes déjà en mesure de taper votre première commande
+SQL. La commande suivante vous permet en effet d'afficher l'intégralité
+du contenu de la table <code>entitas</code> :
+</p>
+        <pre>
+  <code>SELECT * FROM entitas;</code>
+</pre>
+        <p>
+  <strong>Exercices :</strong> </p>
+        <ol>
+  <li> Observez le résultat renvoyé par cette commande, pour vous
+    familiariser avec la structure de la
+    table <code>entitas</code>. Essayez de deviner à quoi correspondent
+    les différentes colonnes. </li>
+<li> Affichez maintenant le contenu des deux autres
+  tables, <code>patetex</code> et <code>inest</code>.</li>
+</ol>
+        <p>
+  <strong>Remarques</strong> sur cette commande :</p>
+        <ol>
+
+  <li> La commande <strong>SELECT</strong> indique ce que SQL doit
+  afficher. Nous avons donné à cette commande l'argument « * », qui
+  signifie « tout ». « SELECT * » veut donc dire « tout
+  afficher ».</li>
+
+  <li> La commande <strong>FROM</strong> précise les tables que SQL doit
+  examiner pour répondre à votre requête. Dans notre exemple, il n'y a
+  qu'une seule table, à savoir <code>entitas</code>. L'ensemble de notre
+  commande, « SELECT * FROM entitas », peut donc être traduit par
+  « afficher toute la table <code>entitas</code> ».</li>
+
+<li> L'usage des <strong>majuscules</strong>, purement conventionnel
+(c'est une convention universellement adoptée en SQL), ne sert qu'à
+rendre le code plus lisible, mais dans la hâte, vous pouvez tout à fait
+  vous permettre de tout taper en minuscules.</li>
+
+<li> Vous observerez également que notre commande est terminée par un
+  <strong>point-virgule</strong> ; il s'agit d'une exigence du langage
+SQL, qui toutefois dans notre système est facultative : si vous oubliez
+ce caractère final, votre requête sera tout de même satisfaite. Mais
+quitte à apprendre le SQL, il vaut mieux prendre dès maintenant de
+bonnes habitudes, car dans un autre contexte vous pourriez recevoir un
+message d'erreur. </li>
+
+<li>Vous pouvez laisser autant d'espaces et de <strong>sauts de
+  ligne</strong> que vous le souhaitez entre les différents mots de
+  votre commande ; par exemple, vous pouvez aller à la ligne entre
+  « SELECT * » et « FROM entitas ». Nous vous le recommandons vivement,
+  pour des raisons de lisibilité, lorsque vos commandes deviennent un
+  peu longues.</li>
+
+</ol>
+        <h3>Les entités</h3>
+        <p> La table <code>entitas</code> contient la liste de toutes les
+  entités argumentatives, avec les champs suivants : </p>
+        <ul>
+  <li> <code>id</code> : un identifiant numérique, par ordre croissant :
+  1, 2, 3, ... </li>
+  <li> <code>clavis</code> : une clef correspondant à l'identifiant
+    attribué à l'entité dans notre fichier XML (115, 213l3,
+    244sc2...). <strong>Attention</strong> : l'identifiant XML n'est
+    jamais identique à l'identifiant SQL ! </li>
+  <li> <code>typus</code> : le type de
+    l'entité : <code>definitio</code>, <code>propositio</code>, <code>appendix</code>... </li>
+  <li> <code>numerus</code> : le numéro de l'entité : scolie 2,
+  lemme 3... </li>
+  <li> <code>titulus</code> : le titre de l'entité, notamment pour les
+  cinq parties du livre. </li>
+</ul>
+        <table>
+  <caption>entitas</caption>
+  <tr> 
+    <th>id</th>
+    <th>clavis</th>
+    <th>typus</th>
+    <th>numerus</th>
+    <th>titulus</th>
+</tr>
+
+  <tr>  <td>1</td><td>p1</td><td>pars</td><td>1</td><td>De Deo</td> </tr>
+  <tr>  <td>2</td><td>1d</td><td>definitiones</td><td></td><td></td> </tr>
+  <tr>  <td>3</td><td>1d1</td><td>definitio</td><td>1</td><td></td> </tr>
+  <tr>  <td>4</td><td>1d2</td><td>definitio</td><td>2</td><td></td> </tr>
+  <tr>  <td>...</td><td>...</td><td>...</td><td>...</td><td>...</td> </tr>
+
+</table>
+        <h3>Les renvois</h3>
+        <p> La deuxième table de la base SQL s'appelle <code>patetex</code> ;
+  elle contient trois champs : </p>
+        <ul>
+  <li> <code>id</code> : un identifiant de renvoi : 1, 2, 3... </li>
+  <li> <code>ex</code> : l'entité vers laquelle un renvoi est
+  effectué ; </li>
+  <li> <code>ad</code> : l'entité contenant ledit renvoi. </li>
+</ul>
+        <table>
+  <caption>patetex</caption>
+  <tr><th>id</th><th>ex</th><th>ad</th></tr>
+  <tr><td>1</td><td>1d3</td><td>101d</td></tr>
+  <tr><td>2</td><td>1d5</td><td>101d</td></tr>
+  <tr><td>3</td><td>1d3</td><td>102d</td></tr>
+  <tr><td>4</td><td>1a5</td><td>103d</td></tr>
+  <tr><td>...</td><td>...</td><td>...</td></tr>
+</table>
+        <h3>Les inclusions</h3>
+        <p> La troisième et dernière table, <code>inest</code> (« est dans » en
+  latin), désigne l'inclusion d'une entité dans une autre. Par exemple,
+  la démonstration de la première proposition de la première partie
+  (101d) est incluse dans la première proposition (101), elle-même
+  comprise dans la première partie (p1). La table <code>inest</code>
+  contient trois champs :</p>
+        <ul>
+  <li> un identifiant <code>id</code> ;</li>
+  <li> un champ <code>circa</code>, qui désigne le contenant ;</li>
+  <li> un champ <code>intra</code>, qui désigne le contenu.</li>
+</ul>
+        <table>
+  <caption>inest</caption>
+  <tr><th>id</th><th>circa</th><th>intra</th></tr>
+  <tr><td>1</td><td>p1</td><td>1d</td></tr>
+  <tr><td>2</td><td>p1</td><td>1d1</td></tr>
+  <tr><td>3</td><td>p1</td><td>1d2</td></tr>
+  <tr><td>4</td><td>p1</td><td>1d3</td></tr>
+  <tr><td>...</td><td>...</td><td>...</td></tr>
+</table>
+        <h3>Sélectionner des champs</h3>
+        <p>
+On n'a pas toujours besoin de tous les champs d'une table en même
+temps : il est généralement utile d'en isoler seulement quelques-uns. Il
+suffit dans ces cas-là d'indiquer avec SELECT quels champs l'on souhaite
+privilégier :
+</p>
+        <pre>
+  <code>SELECT ex FROM patetex;</code>
+</pre>
+        <p><strong>Exercice :</strong> isoler le champ <code>circa</code> de la
+  table <code>inest</code>, puis le champ <code>typus</code> de la
+  table <code>entitas</code>.</p>
+        <p>
+Maintenant, il ne sera pas difficile d'isoler plusieurs champs ; il vous
+faut pour cela les séparer par des virgules.
+</p>
+        <pre>
+  <code>SELECT intra, circa FROM patetex;</code>
+</pre>
+        <p><strong>Exercice :</strong> isoler les champs <code>ex</code>
+  et <code>ad</code> de la table <code>entitas</code> ; vous obtiendrez
+  ainsi la liste de tous les renvois de l'<em>Éthique</em>.</p>
+        <p> Vous êtes désormais à même d'isoler une, plusieurs ou toutes les
+  colonnes d'une table déterminée. Félicitations ! </p>
+        <h3>Sélectionner une ligne</h3>
+      </div>
+    </div>
+  </body>
+</html>

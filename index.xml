@@ -1,0 +1,126 @@
+<page>
+
+  <title>Baptiste Mélès - SpinozaBase</title>
+
+  <html>
+
+    <h1>SpinozaBase</h1>
+
+<div id="onglets">
+    <ul>
+      <li class="active"> <a href="index.html"><img src="images/accueil.png"
+      width="32" height="32" alt="Accueil" align="middle"/>
+      Accueil</a></li>
+
+      <li> <a href="ethica.html"><img src="images/livre.png" width="32"
+      height="32" alt="l'Éthique en latin"
+      align="middle"/> <em>Ethica</em> hypertexte</a></li>
+
+      <li> <a href="statistiques.php"><img src="images/loupe.png" width="32"
+      height="32" alt="Statistiques simples" align="middle" />
+      Statistiques simples</a></li>
+
+      <li> <a href="sql.php"><img src="images/outils.png" width="32"
+      height="32" alt="Statistiques avancées" align="middle" />
+      Statistiques avancées</a></li>
+
+      <li> <a href="technologie.html"><img src="images/aide.png"
+      width="32" height="32" alt="Manuel technique" align="middle" /> À
+      propos</a> </li>
+
+    </ul>
+</div>
+
+<div class="vert">
+  <p> La <strong>SpinozaBase</strong> (anciennement
+ Projet <em>Ethica</em>) est un logiciel libre et gratuit destiné à
+ l'étude de l'<em>Éthique</em> de Spinoza. </p>
+</div>
+
+  <h5> <a href="ethica.html"> <img src="images/livre.png" width="32" height="32" alt="l'Éthique
+  en latin" align="middle" /> <strong>L'<em>Éthique</em> en latin et
+  hypertexte</strong></a></h5>
+
+<p>
+  La SpinozaBase contient d'abord le texte latin de l'<em>Éthique</em>,
+  dans une édition qui présente deux spécificités :
+<ul>
+<li>
+  des <strong>liens hypertextes</strong>  permettant une navigation
+  fluide dans l'ouvrage, au fil des renvois ; </li>
+<li> deux
+  <strong>cadres de synthèse</strong> indiquant, en face de chaque
+  « entité argumentative » — définition, axiome, proposition,
+  scolie... — quelles autres entités y sont liées, <em>supra</em> ou
+  <em>infra</em>.
+  </li>
+  </ul>
+</p>
+
+<p>
+Par exemple, le <a href="ethica.html#108sc2">deuxième scolie de la
+    proposition 8 de la première partie de l'<em>Éthique</em></a> est
+    lié, <em>supra</em>, à la proposition 7 ; et <em>infra</em>, au
+    scolie de la proposition 15. Cela signifie que ce scolie renvoie
+    explicitement à la proposition 7, et se trouve lui-même
+    explicitement cité dans le scolie de proposition 15.
+</p>
+
+<h5> <a href="statistiques.php"><img src="images/loupe.png" width="32"
+      height="32" alt="Statistiques simples" align="middle" />
+      Statistiques</a> </h5>
+
+<p>
+  La SpinozaBase permet de mener
+des <a href="statistiques.php">recherches statistiques</a> sur le texte
+de l'<em>Éthique</em>, telles que :
+</p>
+
+<ul>
+
+  <li> à quelle proposition Spinoza renvoie-t-il le plus souvent ?
+  (réponse : le scolie de la proposition 1 de la troisième partie, cité
+  40 fois)</li>
+
+  <li> que permet de démontrer telle proposition déterminée ? par
+  exemple, la définition 4 de la deuxième partie ? (réponse : les
+  propositions 62 de la quatrième partie et 17 de la cinquième) </li>
+
+  <li> quelles sont les définitions les plus utilisées ? (réponse : la
+  définition 6 de la première partie et 2 de la troisième, citées
+  14 fois) </li>
+
+  <li> et bien d'autres statistiques. </li>
+
+</ul>
+
+<p>
+Quelques statistiques typiques vous sont proposées sur la page
+des <a href="statistiques.php">statistiques simples</a>. Il est
+également possible, moyennant l'apprentissage du langage
+informatique SQL, de construire
+des <a href="http://192.168.0.2/meles/web-free/philosophie/spinoza/ethica/sql.php">statistiques
+avancées</a>, variables à l'infini.
+</p>
+
+<p>
+  Ce site est réalisé par <a
+  href="http://baptiste.meles.free.fr/">Baptiste Mélès</a>. L'édition
+  latine du texte a été adaptée de celle de <a
+  href="http://gilles.louise.perso.sfr.fr/">Gilles Louise</a>, avec sa
+  très aimable autorisation.
+</p>
+
+<div class="important">
+<p>
+  Télécharger le code
+  source :
+<ul>
+<li> <a href="spinozabase-2016-02-12.tgz">Version du 12 février 2016.</a></li>
+<li> <a href="spinozabase-24092008.tgz">Version du 24 septembre 2008.</a>
+</li>
+</ul>
+</p>
+</div>
+  </html>
+</page>

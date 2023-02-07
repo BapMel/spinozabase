@@ -1,0 +1,183 @@
+@import "ethica.css";
+
+div.entitas {
+    padding-top: 2em;
+    text-align:justify;
+/*    position: relative;*/
+    clear: both;
+}
+
+div.subentitas {
+    padding-top: 0em;
+    padding-left: 2em;
+    text-align:justify;
+/*    position: relative; */
+    clear: both;
+}
+
+
+div.ad {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: 1em; 
+    float: right;	
+    background-color: #66CC99; 
+    border: solid 2px #669900;
+/* A terme : largeur de 10em (avec le nom naturel de chaque entité) */
+    width: 8em;
+}
+
+div.ex {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: 1em; 
+    background-color: #FFC0C0;
+    border: solid 2px #FF0000;
+    float: right;	
+    width: 8em;
+}
+
+/* div.toc { */
+/*   background: #D8D8D8; */
+/*   font-family: sans-serif; */
+/*   margin: 1em 2em; */
+/*   border: outset 1px #C8C8C8; */
+/*   padding: 1ex 1em; */
+/* } */
+
+
+/* h1 {  */
+/*   color:  #1e1e7f;  */
+/*   font: normal 200% "Trebuchet MS", Verdana, sans-serif; */
+/*   margin-left: 0; */
+/*   margin-right: 0; */
+/*   padding-left: 2em; */
+/*   text-align: center; */
+/* }  */
+
+ 
+h2 {
+  font: 200% sans-serif;
+  color: #0000FF;
+  background: #E8E8FF;
+  margin: 0.8ex -0.41ex 0.3ex -0.41ex;
+  padding: 0ex 0.41ex;
+  padding-left: 2em;
+  margin-top: 2em;
+  border: solid 2px #0000FF;
+}
+
+h3 {
+  font: 150% sans-serif;
+  color: #0000FF;
+/*  background: #E8E8FF;*/
+  margin: 0.8ex -0.41ex 0.3ex -0.41ex;
+  padding: 0ex 0.41ex;
+  padding-left: 2em; 
+  border-bottom: solid 1px #0000FF;
+}
+
+h4 {
+  color: #0000FF;
+  padding-left: 3em;
+}
+
+ul {
+    padding-top: 0em;
+}
+
+#ad.p {
+    padding-bottom: 0em;
+}
+
+/***********************/             
+/* Barre de navigation */
+/***********************/
+
+/* #nav {  */
+/*  float: left; */
+/*  height: 100%; */
+/*  padding: 25px 10px 0 0; */
+/*  width: 150px; */
+/* } */
+
+/* #nav ul {   */
+/*  list-style-type: none;   */
+/*  padding-left: 1em; */
+/* } */
+
+/* #nav li {  */
+/*  background-color: #d8dfff;  */
+/*  margin-bottom: .5em; */
+/*  padding: 0 0 0 .5em; */
+/* } */
+
+/* #nav a:link { color: #1e1ebf; } */
+
+/* #nav a:visited { color: #6000FF; } */
+
+/* #nav a.actif { /\*color: white;*\/ } */
+
+/******************/
+/* Corps du texte */
+/******************/
+
+/* #corps {  */
+/*  border-left: solid 5px #55ccbb; */
+/*  margin-left: 160px; */
+/*  min-height: 300px; */
+/*  padding: 15px; */
+/* /\* width: 600px;*\/ */
+/* } */
+
+/* #onglets ul {  */
+/*               font: 13px Tahoma, sans-serif; */
+/*               list-style-type: none; */
+/*               padding-bottom: 47px; */
+/*               white-space: nowrap; */
+/*               border-bottom: 1px solid #6c6; */
+/*               margin: 0; */
+/*               } */
+
+/* #onglets li {  */
+/*               float: left; */
+/*               height: 44px; */
+/*               background: #e2f2d2; */
+/*               margin: 2px 2px 0 2px; */
+/*               border: 1px solid #6c6; */
+/*               } */
+
+/* #onglets li.active {  */
+/*                      background-color: #fff; */
+/*                      border-bottom: 1px solid #fff; */
+/*                      border-top: 1px solid #6c6; */
+/*                      border-left: 1px solid #6c6; */
+/*                      border-right: 1px solid #6c6; */
+/*                      } */
+
+/* #onglets a {  */
+/*              float: left; */
+/*              display: block; */
+/*              padding: 0.5em; */
+/*              text-decoration: none; */
+/*              } */
+
+/* #onglets a:hover {  */
+/*                    background: #fff; */
+/*                    border-bottom: 1px solid #fff; */
+/*  } */
+
+/* p.important, div.important { */
+/*   background: #FF8080; */
+/*   border: solid 1px #FF0000; */
+/*   margin: 1ex 2em; */
+/*   padding: 0.8ex; */
+/* } */
+
+/* p.encadre, div.encadre { */
+/*   background: #FFFFA0; */
+/*   border: solid 1px #C0C000; */
+/*   margin: 1ex 2em; */
+/*   padding: 0.8ex; */
+/* } */
+

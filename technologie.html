@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <title>SpinozaBase — Manuel technique</title>
+    <meta name="author" content="Baptiste Mélès" />
+    <meta name="keywords" lang="fr" content="" xml:lang="fr" />
+    <meta name="description" content="Site personnel de Baptiste Mélès" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="fr" />
+    <link rel="stylesheet" href="ethica.css" type="text/css" media="screen" title="Simple" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://baptiste.meles.free.fr/meles.rss" />
+  </head>
+  <body>
+    <div id="tout">
+      <h1>SpinozaBase</h1>
+      <div id="onglets">
+    <ul>
+      <li> <a href="index.html"><img src="images/accueil.png" width="32" height="32" alt="Accueil" align="middle" /> Accueil</a></li>
+
+      <li> <a href="ethica.html"><img src="images/livre.png" width="32" height="32" alt="l'Éthique en latin" align="middle" /> <em>Ethica</em> hypertexte</a></li>
+
+      <li> <a href="statistiques.php"><img src="images/loupe.png" width="32" height="32" alt="Statistiques simples" align="middle" />
+      Statistiques simples</a></li>
+
+      <li> <a href="sql.php"><img src="images/outils.png" width="32" height="32" alt="Statistiques avancées" align="middle" />
+      Statistiques avancées</a></li>
+
+      <li class="active"> <a href="technologie.html"><img src="images/aide.png" width="32" height="32" alt="Manuel technique" align="middle" /> À
+      propos</a> </li>
+
+    </ul>
+</div>
+      <div class="important">
+  <p><strong>Attention :</strong> Cette page aride et austère traite
+  essentiellement d'<strong>informatique</strong>, à peine de
+  philosophie ; elle présuppose un certain nombre de connaissances
+  techniques. Pour une utilisation standard de notre système, vous
+  pouvez donc allègrement vous dispenser de sa lecture.</p>
+
+<p> Une page plus accessible, destinée aux utilisateurs débutants, est
+  en cours de rédaction.</p>
+</div>
+      <ul>
+  <li> <a href="#xml">XML</a> </li>
+  <li> <a href="#xslt">XSLT et HTML</a> </li>
+  <li> <a href="#sql">SQL</a> </li>
+  <li> <a href="#php">PHP</a> </li>
+  <li> <a href="#licence">Licence et téléchargement</a> </li>
+</ul>
+      <a name="xml" id="xml"></a>
+      <h2>XML</h2>
+      <p> La « langue maternelle » de la SpinozaBase est le
+  langage XML. C'est de ce puissant langage que sont dérivés tous les
+  outils rassemblés ici. La matrice du projet est en effet le
+  fichier <a href="ethicadb.xml">ethicadb.xml</a>, qui contient
+  l'intégralité du texte latin de Spinoza, enrichi de balises
+  spécifiques. Par souci de cohérence avec le contenu, l'ensemble du
+  code a été écrit en latin. </p>
+      <h3> Les entités argumentatives</h3>
+      <p> Le texte de Spinoza a d'abord été morcelé en <strong>entités
+      argumentatives</strong> (<code>entitas</code>) : parties
+      (<code>pars</code>), définitions (<code>definitio</code>), axiomes
+      (<code>axioma</code>), lemmes, etc. Chaque entité est encadrée par des
+      balises XML nommées &lt;entitas&gt;, dont voici quelques exemples
+      typiques :</p>
+      <ul>
+  <li> &lt;entitas typus="pars" numerus="1" titulus="De Deo"
+      id="p1"&gt; </li>
+<li> &lt;entitas typus="definitio" numerus="1" id="1d1"&gt;</li>
+<li> &lt;entitas typus="scholium" numerus="2" id="108sc2"&gt; </li>
+</ul>
+      <p> Comme vous pouvez le constater, la balise contient déjà certaines
+      informations : </p>
+      <ul>
+<li> le numéro (<code>numerus</code>) de partie, de proposition, de scolie,
+  etc. ; </li> 
+<li> le type (<code>typus</code>) : partie, proposition, définition, axiome,
+  etc. ; </li>
+<li> un identifiant (nommé, selon la pratique courante des
+  informaticiens, <code>id</code>) ; </li>
+<li> le cas échéant, un titre (<code>titulus</code>), notamment pour les
+  parties (<em>De Deo</em>, etc.).  </li>
+</ul>
+      <h3>Nomenclature</h3>
+      <p> Chaque entité argumentative est identifiée par un code tel que 101,
+  104d, 213l5, 244sc2, etc. Sous leur aspect mystérieux, ces
+  identifiants sont régis par un petit nombre de règles simples, et sont
+  la clef du système logiciel adopté par notre projet.  La nomenclature
+  adoptée pour les identifiants est la suivante. </p>
+      <ul>
+  <li> Le premier chiffre désigne la <strong>partie</strong> de
+l'<em>Éthique</em> dans laquelle est située l'entité : les entités 1d1,
+115, 1a7, 1app se trouvent donc dans la première partie, les entités
+211, 213l1, 213l3c dans la deuxième, etc. </li>
+  <li> Les lettres désignent le <strong>type</strong> de l'entité :
+<ul>
+  <li> « a » pour <strong>axiome</strong> (situé après le numéro de
+    partie, comme dans 1a6) ou pour « <strong>autrement</strong> »
+    (situé après un nom de proposition, comme dans 106a, 111a1,
+    111a2), </li>
+  <li> « app » pour <strong>appendice</strong> (1app),</li>
+  <li> « c » pour <strong>corollaire</strong> (113c, 114c1, 114c2),</li>
+  <li> « d » pour <strong>définition</strong> (situé après le numéro de
+    partie, comme dans 1d1 ou 2d4) ou
+    pour <strong>démonstration</strong> (situé après un nom de
+    proposition, comme dans 101d),</li>
+  <li> « e » pour <strong>explication</strong> (1d6e),</li>
+  <li> « l » pour <strong>lemme</strong> (213l2), </li>
+  <li> « p » pour <strong>partie</strong> (p1, p2, ..., p5), </li>
+  <li> « pr » pour <strong>préface</strong> (2pr), </li>
+  <li> « sc » pour <strong>scolie</strong> (110sc, 108sc1, 108sc2) </li>
+  <li> combinaisons de tout ce qui précède : 210csc (scolie du
+  corollaire de la proposition 210), 217cd (démonstration du corollaire
+  de 217), 245c1sc</li>
+
+  <li> en l'absence de lettre explicite, une entité est
+une <strong>proposition</strong> : 115 désigne la proposition 15 de la
+première partie, 213 la treizième de la deuxième partie, 307 la septième
+de la troisième partie, etc. </li></ul></li>
+
+
+  <li> Les chiffres faisant suite à une lettre désignent
+  le <strong>numéro</strong> de l'entité. Ainsi, 244sc2 désigne le
+  deuxième scolie de la proposition 44 de la deuxième partie, 213l3 le
+  troisième lemme qui suit la proposition 13 de la deuxième partie,
+  etc. </li>
+
+  <li> Quelques cas particuliers : <ul>
+<li>213a1, 213a2, 213a1a, 213a2a, 213a3 : les axiomes qui suivant la
+  proposition 213 ;</li>
+<li> 213def : la définition qui suit 213 ;</li>
+<li>213p1 à 213p6 : les postulats qui suivent 213 ;</li>
+<li>3ad1, 3ad2, etc. : les définitions d'affects ;</li>
+<li>3agd : définition générale des affects ;</li>
+<li>3agde : explication de la définition générale des affects ;</li>
+<li>4ap : appendice de la quatrième partie ;</li>
+<li>4appr : préface de l'appendice de la quatrième partie ;</li>
+<li>4c1, 4c2... : chapitres de l'appendice de la quatrième partie ;</li>
+</ul></li>
+</ul>
+      <h3>Les renvois</h3>
+      <p> L'<em>Éthique</em> contient de nombreux renvois entre les entités
+  argumentatives ; notamment — mais non exclusivement — les propositions
+  renvoient à des définitions, axiomes, ou autres propositions. Dans la
+  syntaxe de notre fichier XML, chaque renvoi est identifié par une
+  balise nommée &lt;patet-ex&gt;, en référence à la démonstration de la
+  proposition 1 de la première partie de l'<em>Éthique</em> : <em>patet
+  ex definitione 3 et 5</em>. La structure de cette balise est
+  relativement simple, comme le montrent les exemples suivants : </p>
+      <ul>
+  <li>&lt;patet-ex id="1d3"&gt;</li>
+  <li>&lt;patet-ex id="207"&gt;</li>
+  <li>&lt;patet-ex id="244sc2"&gt;</li>
+</ul>
+      <p> C'est donc sous cette forme qu'a été structuré en XML le texte latin
+  de Spinoza. Cette syntaxe permet par la suite d'automatiser certaines
+  opérations, comme nous allons le voir. </p>
+      <a name="xslt" id="xslt"></a>
+      <h2>XSLT et HTML</h2>
+      <p> La moindre des choses que nous pouvions proposer était une version
+  en HTML du texte latin. Il aurait été fastidieux de retaper tout le
+  texte, sans compter les erreurs qui auraient pu s'y ajouter à notre
+  insu. Aussi fallait-il un moyen de convertir automatiquement notre
+  fichier XML en HTML. Par chance, le langage XSLT, dialecte du XML, a
+  été conçu pour cela — entre autres choses, comme nous le constaterons
+  par la suite.  </p>
+      <p> C'est pourquoi nous avons écrit la feuille de
+  style <a href="ethicadb.xsl">ethicadb.xsl</a>. Appliquée au
+  fichier XML réalisé précédemment, elle a généré une page
+  web : <a href="ethica.html">ethica.html</a>. Cette édition latine
+  de Spinoza utilise les ressources de l'hypertexte pour relier chaque
+  entité argumentative, d'une part aux entités auxquelles elle
+  renvoie <em>supra</em>, de l'autre à celles qui s'y
+  réfèrent <em>infra</em>. Cela peut faciliter la lecture du livre, en
+  montrant par exemple concrètement ce que telle ou telle définition
+  sert véritablement à démontrer. L'on peut aussi s'apercevoir avec
+  surprise que certaines définitions, comme la troisième du deuxième
+  livre, ne sont pas utilisées explicitement une seule fois dans
+  l'ouvrage. </p>
+      <p> Pour être plus précis, il ne s'agit pas véritablement de HTML mais
+  de XHTML ; comme son nom l'indique, il s'agit une fois encore d'un
+  dialecte XML.   </p>
+      <a name="sql" id="sql"></a>
+      <h2>SQL</h2>
+      <p> Tous les langages utilisés jusqu'ici — XML, XSLT, XHTML — étaient
+ en dernière instance du XML. Langage puissant et souple, vous aurez
+ déjà pu le remarquer. Mais qui connaît également certaines limites, et
+ notamment la difficulté d'effectuer des recherches complexes. Il existe
+ un langage d'une grande efficacité pour ceci, mais il n'a strictement
+ aucun lien de parenté avec XML ; il s'agit de SQL. </p>
+      <p> Il fallait donc pouvoir traduire notre fichier XML en SQL ; ce
+  qui a pu être réalisé au moyen d'une nouvelle feuille de style XSLT
+    nommée <a href="xml2sql.xsl">xml2sql.xsl</a>. Celle-ci a généré le
+    programme SQL <a href="ethicadb.sql">ethicadb.sql</a>, qui à son
+    tour a créé la base SQLite <a href="ethicadb.db">ethicadb.db</a> (ce
+  dernier fichier, binaire, n'est pas lisible par des humains).  </p>
+      <h3>Les entités</h3>
+      <p> La base SQL est composée de trois tables. La
+  première, <code>entitas</code>, contient la liste de toutes les entités
+  argumentatives, avec les champs suivants : </p>
+      <ul>
+  <li> <code>id</code> : un identifiant numérique, par ordre croissant :
+  1, 2, 3, ... </li>
+  <li> <code>clavis</code> : une clef correspondant à l'identifiant
+    attribué à l'entité dans notre fichier XML (115, 213l3,
+    244sc2...). <strong>Attention</strong> : l'identifiant XML n'est
+    jamais identique à l'identifiant SQL ! </li>
+  <li> <code>typus</code> : le type de
+    l'entité : <code>definitio</code>, <code>propositio</code>, <code>appendix</code>... </li>
+  <li> <code>numerus</code> : le numéro de l'entité : scolie 2,
+  lemme 3... </li>
+  <li> <code>titulus</code> : le titre de l'entité, notamment pour les
+  cinq parties du livre. </li>
+</ul>
+      <table>
+  <caption>entitas</caption>
+  <tr> 
+    <th>id</th>
+    <th>clavis</th>
+    <th>typus</th>
+    <th>numerus</th>
+    <th>titulus</th>
+</tr>
+
+  <tr>  <td>1</td><td>p1</td><td>pars</td><td>1</td><td>De Deo</td> </tr>
+  <tr>  <td>2</td><td>1d</td><td>definitiones</td><td></td><td></td> </tr>
+  <tr>  <td>3</td><td>1d1</td><td>definitio</td><td>1</td><td></td> </tr>
+  <tr>  <td>4</td><td>1d2</td><td>definitio</td><td>2</td><td></td> </tr>
+  <tr>  <td>...</td><td>...</td><td>...</td><td>...</td><td>...</td> </tr>
+
+</table>
+      <h3>Les renvois</h3>
+      <p> La deuxième table de la base SQL s'appelle <code>patetex</code> ;
+  elle contient trois champs : </p>
+      <ul>
+  <li> <code>id</code> : un identifiant de renvoi : 1, 2, 3... </li>
+  <li> <code>ex</code> : l'entité vers laquelle un renvoi est
+  effectué ; </li>
+  <li> <code>ad</code> : l'entité contenant ledit renvoi. </li>
+</ul>
+      <table>
+  <caption>patetex</caption>
+  <tr><th>id</th><th>ex</th><th>ad</th></tr>
+  <tr><td>1</td><td>1d3</td><td>101d</td></tr>
+  <tr><td>2</td><td>1d5</td><td>101d</td></tr>
+  <tr><td>3</td><td>1d3</td><td>102d</td></tr>
+  <tr><td>4</td><td>1a5</td><td>103d</td></tr>
+  <tr><td>...</td><td>...</td><td>...</td></tr>
+</table>
+      <h3>Les inclusions</h3>
+      <p> La troisième et dernière table, <code>inest</code> (« est dans » en
+  latin), désigne l'inclusion d'une entité dans une autre. Par exemple,
+  la démonstration de la première proposition de la première partie
+  (101d) est incluse dans la première proposition (101), elle-même
+  comprise dans la première partie (p1). La table <code>inest</code>
+  contient trois champs :</p>
+      <ul>
+  <li> un identifiant <code>id</code> ;</li>
+  <li> un champ <code>circa</code>, qui désigne le contenant ;</li>
+  <li> un champ <code>intra</code>, qui désigne le contenu.</li>
+</ul>
+      <table>
+  <caption>inest</caption>
+  <tr><th>id</th><th>circa</th><th>intra</th></tr>
+  <tr><td>1</td><td>p1</td><td>1d</td></tr>
+  <tr><td>2</td><td>p1</td><td>1d1</td></tr>
+  <tr><td>3</td><td>p1</td><td>1d2</td></tr>
+  <tr><td>4</td><td>p1</td><td>1d3</td></tr>
+  <tr><td>...</td><td>...</td><td>...</td></tr>
+</table>
+      <p> Pour utiliser la base SQL, il faut soit connaître ce langage, soit
+  utiliser une interface qui vous en dispense ; simplifier l'utilisation
+  de cette base est notre principal défi. Voici à titre d'exemples
+  quelques requêtes possibles : </p>
+      <table>
+  <tr><td> afficher la totalité de la
+    table <code>entitas</code> </td> <td> <code>SELECT * FROM
+    entitas;</code> </td></tr>
+  <tr><td> afficher la totalité de la
+    table <code>patetex</code> </td> <td> <code>SELECT * FROM
+    patetex;</code> </td></tr>
+<tr><td> le palmarès, dans l'ordre, des entités les plus référencées,
+ avec le nombre de citations de chacune </td> <td> SELECT ex,
+ count(ex) AS cnt FROM patetex GROUP BY ex ORDER BY cnt DESC;
+ </td></tr>
+<!-- <tr><td> les définitions qui ne servent à rien </td> <td> SELECT clavis -->
+<!--   from entitas WHERE typus='definitio' AND clavis NOT IN (SELECT ex from -->
+<!--   patetex); </td></tr> -->
+</table>
+      <a name="php" id="php"></a>
+      <h2>PHP</h2>
+      <p> Tous les fichiers et programmes mentionnés ci-dessus fournissent
+  la structure technique du projet, sans toutefois donner véritablement
+  les moyens de les utiliser, sauf à ceux qui connaîtraient déjà les
+  langages XML et SQL. </p>
+      <p> Comme l'on ne saurait attendre de tout historien de la philosophie
+  qu'il ait été initié à SQL, langage relativement peu intuitif, nous
+  créerons progressivement des interfaces facilitant l'utilisation de
+  ces ressources. Le meilleur candidat pour réaliser des interfaces
+  interactives est le langage PHP, et c'est pourquoi nous aurons
+  recours à ses services. </p>
+
+      <a name="licence" id="licence"></a>
+      <h2>Licence et téléchargement</h2>
+      <p> Tous les fichiers et programmes du projet sont
+      des <strong>documents et logiciels libres</strong>, sous
+      licence GPL et en téléchargement libre. Vous pouvez, sans même
+      avoir à solliciter mon accord, les copier, les modifier et les
+      redistribuer. </p>
+    </div>
+  </body>
+</html>

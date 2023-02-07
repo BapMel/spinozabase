@@ -1,0 +1,39 @@
+<!-- This DTD gives the rules for ethica.xml   -->
+<!-- Baptiste Meles. August the 4th, 2007 -->
+
+<!ENTITY oelig "&#x0153;">
+<!ENTITY aelig "&#198;" >
+
+<!-- The root element is ethica -->
+<!ELEMENT ethica (entitas+) >
+
+
+<!-- There are only two kinds of tags : <entitas> (which defines every 
+  entity of Spinoza's book) and <patet-ex> (which denotes every
+  reference made to an entity) --> 
+
+<!ELEMENT entitas (verba*, entitas*, patet-ex*, p*, div*) >
+<!ATTLIST entitas
+	  typus     (pars | praefatio | definitio | axioma |
+	  demonstratio | propositio | lemma | appendix | caput |
+	  scholium | postulatum | corollarium | aliter | explicatio)
+                	     #REQUIRED 
+
+	  titulus   CDATA    #IMPLIED
+
+	  numerus   NMTOKEN  #IMPLIED
+
+	  id        NMTOKEN  #REQUIRED
+>
+
+
+<!ELEMENT patet-ex (#PCDATA)>
+<!ATTLIST patet-ex  id        NMTOKEN  #REQUIRED >
+
+<!ELEMENT verba ANY >
+<!ELEMENT p ANY >
+<!ELEMENT br EMPTY>
+<!ELEMENT em ANY>
+
+<!-- That's it ! -->
+<!-- B.M. -->
